@@ -3,31 +3,33 @@ public class Solution{
   ArrayList<ArrayLIst<Integer>> threeSum(int[] num){
     
     ArrayList<ArrayLIst<Integer>> res = new ArrayList<ArrayLIst<Integer>>();
+    if (res.length < 3)   return res;   
     Arrays.sort(num);
     
     for(int i = 0; i <= num.length-2; i++){
-      int j = i + 1;
-      int k = num.length - 1;
-      
       if(i == 0 || num[i] > num[i - 1]){ //avoid duplicate solutions
-      
-        if(num[j] + num[k] == -num[i]){
-          ArrayLIst<Integer> temp = new ArrayLIst<Integer>();
-          temp.add(num[i]);
-          temp.add(num[j]);
-          temp.add(num[k]);
-          res.add(temp);
-          j++;
-          k--;
-          while(num[j] == num[j - 1]) j++; //avoid duplicate solutions
-          while(num[k] == num[k + 1]) k--; //avoid duplicate solutions
+        int j = i + 1;
+        int k = num.length - 1;
 
-        }else if(num[j] + num[k] < -num[i]){
-          j++;
-        }else{
-          k--;
+        while(j < k){
+          if(num[j] + num[k] == -num[i]){
+              ArrayLIst<Integer> temp = new ArrayLIst<Integer>();
+              temp.add(num[i]);
+              temp.add(num[j]);
+              temp.add(num[k]);
+              res.add(temp);
+              j++;
+              k--;
+              while(j < k && num[j] == num[j - 1]) j++; //avoid duplicate solutions
+              while(j < k && num[k] == num[k + 1]) k--; //avoid duplicate solutions
+    
+            }else if(num[j] + num[k] < -num[i]){
+              j++;
+            }else{
+              k--;
+            }
+          }
         }
-      }
     }
     return res;
   }
