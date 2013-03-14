@@ -1,8 +1,8 @@
 public class Solution{
 
-  ArrayList<ArrayLIst<Integer>> threeSum(int[] num){
+  ArrayList<ArrayList<Integer>> threeSum(int[] num){
     
-    ArrayList<ArrayLIst<Integer>> res = new ArrayList<ArrayLIst<Integer>>();
+    ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
     if (res.length < 3)   return res;   
     Arrays.sort(num);
     
@@ -13,7 +13,7 @@ public class Solution{
 
         while(j < k){
           if(num[j] + num[k] == -num[i]){
-              ArrayLIst<Integer> temp = new ArrayLIst<Integer>();
+              ArrayList<Integer> temp = new ArrayList<Integer>();
               temp.add(num[i]);
               temp.add(num[j]);
               temp.add(num[k]);
