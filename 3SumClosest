@@ -19,7 +19,7 @@ public class Solution {
         int result = temp.get(0).intValue();
         for(int i = 1; i < temp.size(); i ++){
             if (Math.abs(temp.get(i).intValue() - target) < Math.abs(result - target)){
-                result = Math.abs(temp.get(i).intValue() - target);
+                result = Math.abs(temp.get(i).intValue());
             } 
         }
         
