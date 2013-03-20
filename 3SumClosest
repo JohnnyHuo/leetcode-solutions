@@ -5,7 +5,7 @@ public class Solution {
       
         
        
-        int [] temp = new int[];
+        ArrayList<Integer> temp = new ArrayList<Integer>();
         for(int i = 0; i < num.length - 2; i++){
             for(int j = i + 1; j < num.length - 1; j ++){
                 for(int z = j + 1; z < num.length; z ++){
@@ -18,7 +18,7 @@ public class Solution {
         
         int result = temp[0];
         for(i = 1; i < temp.length; i ++){
-            if (Math.abs(temp[i] - target) < Math.abs(result - target){
+            if (Math.abs(temp[i] - target) < Math.abs(result - target)){
                 result = temp[i];
             } 
         }
