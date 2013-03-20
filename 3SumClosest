@@ -16,10 +16,10 @@ public class Solution {
             }
         }
         
-        int result = temp[0];
-        for(i = 1; i < temp.length; i ++){
-            if (Math.abs(temp[i] - target) < Math.abs(result - target)){
-                result = temp[i];
+        int result = temp.get(0).intValue();
+        for(int i = 1; i < temp.size(); i ++){
+            if (Math.abs(temp.get(i).intValue() - target) < Math.abs(result - target)){
+                result = Math.abs(temp.get(i).intValue() - target);
             } 
         }
         
