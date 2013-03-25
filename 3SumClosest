@@ -1,4 +1,4 @@
-public class Solution {
+ublic class Solution {
     public int threeSumClosest(int[] num, int target) {
         // Start typing your Java solution below
         // DO NOT write main() function
@@ -8,6 +8,7 @@ public class Solution {
         
         int len = num.length;
         int res = Integer.MAX_VALUE;
+        int result = Integer.MIN_VALUE;
         Arrays.sort(num);
         for(int i = 0; i< len - 2; i++){
             int j = i + 1;
@@ -24,11 +25,12 @@ public class Solution {
                 }
                 if(Math.abs(diff) < res){
                     res = Math.abs(diff);
+                    result = sum;
                 }
                 
             }
             
         }
-        return res;
+        return result;
     }
 }
