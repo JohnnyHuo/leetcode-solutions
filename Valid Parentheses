@@ -9,15 +9,15 @@ public class Solution{
       }else{
         if(stack.empty()){
           return false;
-        }else(
+        }else{
           char current = s.charAt(i);
           char temp = stack.peek();
-          if((temp == '(' && current == ')' || temp == '[' && current == ']' || temp == '{' && current == '}'){
+          if(temp == '(' && current == ')' || temp == '[' && current == ']' || temp == '{' && current == '}'){
             stack.pop();
           }else{
             return false;
           }
-        )
+        }
       }
     }
     if(stack.empty()){
