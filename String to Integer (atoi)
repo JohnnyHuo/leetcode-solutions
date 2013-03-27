@@ -43,7 +43,9 @@ public class Solution {
                     overflow = true;
                     break;
                 }
-                
+                i++;
+            }else{
+                return 0;
             }
         }
         
