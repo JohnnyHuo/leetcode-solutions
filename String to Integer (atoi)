@@ -1,123 +1,63 @@
-/*   这个代码行数少, 但是感觉麻烦一些,
-public class Solution {
-public int atoi(String str) {
-    // Start typing your Java solution below
-    // DO NOT write main() function
-    boolean neg = false;
-    boolean space = false;
-    boolean plus = false;
-    int idxb=0;
-    int idxe=str.length()-1;
-    for (int i=0;i<str.length();i++) {
-        if (str.charAt(i)>='0' && str.charAt(i)<='9') {
-            idxb=i;
-            while (i<str.length()) {
-                if (str.charAt(i)<'0' || str.charAt(i)>'9') {
-                    break;
-                }
-                i++;
-            }
-            idxe = i-1;
-            break;
-        } else if (str.charAt(i)==' ') {
-            if (neg || plus) return 0;
-            space = true;
-        } else if (str.charAt(i) == '-') {
-            if (neg || plus) return 0;
-            neg = true;
-        } else if (str.charAt(i) == '+') {
-            if (neg || plus) return 0;
-            plus = true;
-        } else {
-            return 0;
-        }
-    }
-    int size = idxe-idxb+1;
-    char[] arr = str.substring(idxb,idxe+1).toCharArray();
-    long sum=0;
-    for (int i=size-1;i>=0;i--) {
-        int idx = size-1-i;
-        sum += (arr[idx]-48)*Math.pow(10,i);
-    }
-    if (neg) {
-        if (sum>Integer.MAX_VALUE) return Integer.MIN_VALUE;
-        return (0-(int) sum);
-    }
-    if (sum>=Integer.MAX_VALUE) return Integer.MAX_VALUE;
-    return (int) sum;
-}
-}
-----------------------------下面这种思路比较清晰--------------------------------
-*/
-
 public class Solution {
     public int atoi(String str) {
         // Start typing your Java solution below
         // DO NOT write main() function
-         
-        int i = 0;
- 
-        if (str.length() == 0) {
-            return 0;
-        }
+        if(str.length()==0) return 0;
         boolean isNeg = false;
-        boolean overFlow = false;
-        char c = '*'; //anything will do
- 
-        while (i  < str.length()) {
+        boolean overflow = false;
+        char c = '*'; // anything will do
+        int i = 0;
+        //c = str.charAt(i);
+        //if(Character.isWhiteSpace(c)){
+          //  i++;
+        //}
+        while(i < str.length()){
             c = str.charAt(i);
-            if (Character.isWhitespace(c)) {
+            if(Character.isWhitespace(c)){
                 i++;
-            }
-            else if (c == '+' || c == '-' || Character.isDigit(c)) {
+            }else if(c == '+' || c == '-' || Character.isDigit(c)){
+                //i++;
                 break;
-            }
-            else {
+            }else{
                 return 0;
             }
         }
- 
-        if (c == '-') {
+        
+        if(c == '-'){
             isNeg = true;
         }
- 
-        if (c == '-' || c == '+') {
+        
+        if(c == '-' || c == '+'){
             i++;
         }
- 
+        
         int n = 0;
- 
-        while (i < str.length()) {
+        
+        while(i < str.length()){
             c = str.charAt(i);
-            if (Character.isDigit(c)) {
-                int x = Character.digit(c, 10);
-                if ((Integer.MAX_VALUE - x)/10 >= n) {
+            if(Character.isDigit(c)){
+                int x = Character.digit(c,10);
+                if((Integer.MAX_VALUE - x)/10 >= n){ // n 的逆运算
                     n = 10*n + x;
-                }
-                else {
-                    overFlow = true;
+                }else{
+                    overflow = true;
                     break;
                 }
-                i++;
-            }
-            else {
-                break;
+                
             }
         }
- 
-        if (overFlow) {
-            if (isNeg) {
+        
+        if(overflow){
+            if(isNeg){
                 return Integer.MIN_VALUE;
-            }
-            else {
+            }else{
                 return Integer.MAX_VALUE;
             }
-        }
-        else {
-            if (isNeg) {
+            
+        }else{
+            if(isNeg){
                 return -n;
-            }
-            else {
+            }else{
                 return n;
             }
         }
