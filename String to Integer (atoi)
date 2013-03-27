@@ -1,62 +1,44 @@
-public class Solution {
-    public int atoi(String str) {
-        // Start typing your Java solution below
-        // DO NOT write main() function
-        if(str.length()==0) return 0;
+public class Solution{
+    public int atoi(String str){
+        if(str.length() == 0)   return 0;
         boolean isNeg = false;
         boolean overflow = false;
-        char c = '*'; // anything will do
         int i = 0;
-        //c = str.charAt(i);
-        //if(Character.isWhiteSpace(c)){
-          //  i++;
-        //}
+        char c = 'a';
         while(i < str.length()){
             c = str.charAt(i);
             if(Character.isWhitespace(c)){
                 i++;
             }else if(c == '+' || c == '-' || Character.isDigit(c)){
-                //i++;
                 break;
             }else{
                 return 0;
             }
         }
-        
-        if(c == '-'){
-            isNeg = true;
-        }
-        
-        if(c == '-' || c == '+'){
-            i++;
-        }
-        
+        if(c == '-')    isNeg = true;
+        if(c == '+'||c == '-')  i++;
         int n = 0;
-        
         while(i < str.length()){
             c = str.charAt(i);
             if(Character.isDigit(c)){
-                int x = Character.digit(c,10);
-                if((Integer.MAX_VALUE - x)/10 >= n){ // ***************************************n 的逆运算
-                    n = 10*n + x;
+                int x = Character.digit(c, 10);
+                if((Integer.MAX_VALUE - x)/10 >= n){
+                    //n += x*10;  **************************************千里之堤，溃于蚁穴!!!!!!!!!!!!!!!!!!!!!!!!!WTFFFFFFFFFFFFFFFFFFF
+                    n = x + 10*n;
                 }else{
                     overflow = true;
-                    break;
                 }
-                i++;        // MISSED
-            }else{          // MISSED
-                //return 0;   ********************************************MISTAKE HERE!!! 
-                break;      // MISSED
-            }               // MISSED
+                i++;
+            }else{
+                break;
+            }
         }
-        
         if(overflow){
             if(isNeg){
                 return Integer.MIN_VALUE;
             }else{
                 return Integer.MAX_VALUE;
             }
-            
         }else{
             if(isNeg){
                 return -n;
