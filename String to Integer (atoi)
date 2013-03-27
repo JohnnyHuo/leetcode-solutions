@@ -37,16 +37,17 @@ public class Solution {
             c = str.charAt(i);
             if(Character.isDigit(c)){
                 int x = Character.digit(c,10);
-                if((Integer.MAX_VALUE - x)/10 >= n){ // n 的逆运算
+                if((Integer.MAX_VALUE - x)/10 >= n){ // ***************************************n 的逆运算
                     n = 10*n + x;
                 }else{
                     overflow = true;
                     break;
                 }
-                i++;
-            }else{
-                return 0;
-            }
+                i++;        // MISSED
+            }else{          // MISSED
+                //return 0;   ********************************************MISTAKE HERE!!! 
+                break;      // MISSED
+            }               // MISSED
         }
         
         if(overflow){
