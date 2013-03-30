@@ -1,33 +1,36 @@
-/*public class ListNode{
-    int val;
-    ListNode next;
-    ListNode(int x){
-        val = x;
-        next = null;
-    }
-}
-*/
-
-public class Solution{
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2){
-        if(l1 == null)  return l2;
-        if(l2 == null)  return l1;
-        ListNode head = (l1.val > l2.val) ? l1 : l2;
-        while(l1 != null && l2 != null){
-            ListNode temp1 = l1;
-            ListNode temp2 = l2;
-            if(l1.val <= l2.val){
-                while(l1!=null&& l1.val <= l2.val){
-                    temp1 = l1;
-                    l1=l1.next;
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode mergeTwoLists(ListNode v1, ListNode v2) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(v1 == null)   return v2;
+        if(v2 == null)   return v1;
+        
+        ListNode head = (v1.val < v2.val) ? v1:v2;
+        while(v1 != null && v2 != null){
+            ListNode temp1 = null, temp2 = null;
+            if(v1.val < v2.val){
+                while(v1 != null && v1.val < v2.val){
+                    temp1 = v1;
+                    v1 = v1.next;    
                 }
-                temp1.next = l2;
+                temp1.next = v2;    //让刚好比v2大的v1前面一个ListNode(刚好小于v2)指向v2
             }else{
-                while(l2!=null&&l2.val<=l1.val){
-                    temp2=l2;
-                    l2=l2.next;
+                while(v2 != null && v2.val <= v1.val){
+                    temp2 = v2;
+                    v2 = v2.next;
                 }
-                temp2.next = l1;
+                temp2.next = v1;
             }
         }
         return head;
