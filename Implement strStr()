@@ -67,7 +67,7 @@ public class Solution {
         
         int haystackSize = haystack.length();
         int needleSize = needle.length();
-        int bound = haystackSize - needleSize + 1;  //这里 + 1, 因为String.subString(beginIndex, endIndex) 运算出来的subString长度为endIndex - beginIndex, subString从beginIndex那个character开始, 一直到endIndex - 1 位置的character结束.
+        int bound = haystackSize - needleSize + 1;  // 因为下面判断条件中用的是i<bound; 若改成i<=bound, 则此处不用+1;
         int i = 0;
         while(i < bound){
             if(haystack.substring(i, i+needleSize).equals(needle)){
