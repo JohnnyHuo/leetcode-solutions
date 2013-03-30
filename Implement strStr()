@@ -39,7 +39,7 @@ Throws:
 IndexOutOfBoundsException - if the beginIndex is negative, or endIndex is larger than the length of this String object, or beginIndex is larger than endIndex.
 */
 
-
+/*
 public class Solution {
     public String strStr(String haystack, String needle) {
         // Start typing your Java solution below
@@ -54,6 +54,26 @@ public class Solution {
             if(haystack.subString(i, i+needleSize).equals(needle)){
                 return needle;
             }
+        }
+        return null;
+    }
+}
+*/
+public class Solution {
+    public String strStr(String haystack, String needle) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(haystack == null || needle == null)  return null;
+        
+        int haystackSize = haystack.length();
+        int needleSize = needle.length();
+        int bound = haystackSize - needleSize + 1;  //这里 + 1, 因为String.subString(beginIndex, endIndex) 运算出来的subString长度为endIndex - beginIndex, subString从beginIndex那个character开始, 一直到endIndex - 1 位置的character结束.
+        int i = 0;
+        while(i < bound){
+            if(haystack.substring(i, i+needleSize).equals(needle)){
+                return haystack.substring(i);
+            }
+            i++;
         }
         return null;
     }
