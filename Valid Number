@@ -18,6 +18,8 @@ public class Solution {
         //whitespace and sign
         //number
         //exponential part
-    return s.matches("\\s*[-|+]?(\\d+\\.?|\\d*\\.?\\d+)(e[-|+]?\\d+)?\\s*");   
+    //return s.matches("\\s*[-|+]?(\\d+\\.?|\\d*\\.?\\d+)(e[-|+]?\\d+)?\\s*");   
+    
+    return s.matches("\\s*[-|+]?(\\.?\\d+|\\d+\\.?\\d+|\\d+\\.?)(e[-|+]?\\d+)?\\s*");  //条理更清晰
     }
 }
