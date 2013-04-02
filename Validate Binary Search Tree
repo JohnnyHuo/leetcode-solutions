@@ -1,0 +1,28 @@
+// Given a binary tree, determine if it is a valid binary search tree (BST).
+//************下面这种不对, 因为多次调用isValidBST()的时候, lastInput始终是连贯的, 所以会出错***********
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public static int lastInput = Integer.MIN_VALUE;
+    public static boolean isValidBST(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(root == null)    return true;
+        
+        if(!isValidBST(root.left))  return false;
+        
+        if(root.val <= lastInput)    return false;
+        lastInput = root.val;
+        
+        if(!isValidBST(root.right)) return false;
+        
+        return true;
+    }
+}
