@@ -40,6 +40,7 @@ public class Solution {
  */
 
 // 这样就解决了上面的问题, 其实只要保证每次instantiate new instance 时, 用来比较的variable不会被初始化就行了, 所以下面把需要递归的部分单独写出来.
+/*
 public class Solution {
     //Integer prev;
     int prev;
@@ -65,5 +66,33 @@ public class Solution {
         }
         prev = root.val;
         return inOrder(root.right);
+    }
+}
+*/
+//+===============第二天又写了一个, 也是对的=====================================
+public class Solution {
+    int lastVal;
+    public boolean isValidBST(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+    
+    lastVal = Integer.MIN_VALUE;
+    
+    return checkBST(root);
+    
+    }
+    
+    private boolean checkBST(TreeNode root){
+        
+        if(root == null)    return true;
+        
+        if(!checkBST(root.left))    return false;
+        
+        if(root.val <= lastVal)     return false;
+        lastVal = root.val;
+        
+        if(!checkBST(root.right))   return false;
+        
+        return true;
     }
 }
