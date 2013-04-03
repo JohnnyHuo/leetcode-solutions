@@ -1,0 +1,52 @@
+public class Solution {
+    public void setZeroes(int[][] matrix) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        //boolean isZero = false;
+        //boolean columnContainsZero = false;
+        boolean firstRowAllZero = false;
+        boolean firstColAllZero = false;
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[i].length; j++){
+                if(matrix[i][j] == 0){
+                    /*for(int m = 0; m < matrix[i].length; m++){
+                        matrix[i][m] = 0;
+                    }
+                    for(int n = 0; n < matrix.length; n++){
+                        matrix[n][j] = 0;
+                    }*/
+                    if(i == 0) firstRowAllZero = true;
+                    if(j == 0) firstColAllZero = true;
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+                    
+            }
+        } 
+        if(firstRowAllZero || firstColAllZero){
+            for(int i = 0; i < matrix.length; i++){
+                for(int j = 0; j < matrix[i].length; j++){
+                    matrix[i][j] = 0;
+                }
+            }
+            return;
+        }
+       
+        
+        for(int i = 1; i < matrix.length; i++){
+            if(matrix[i][0] == 0){
+                for(int j = 0; j < matrix[i].length; j++){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        
+        for(int j = 1; j < matrix[0].length; j++){
+            if(matrix[0][j] == 0){
+                for(int i = 0; i < matrix.length; i++){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+}
