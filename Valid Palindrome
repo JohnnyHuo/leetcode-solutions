@@ -1,0 +1,35 @@
+public class Solution {
+    public boolean isPalindrome(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int len = s.length();
+        if(len == 0 || s == null)   return true;
+        int head = 0;
+        int tail = len - 1;
+        
+        s = s.toLowerCase(); //------missed-------
+        while( head <= len && tail >=0){
+            char c = s.charAt(head);
+            if(!isValidChar(c)){
+                head++;
+            }
+        /*}
+        while( tail >= 0){
+            */
+            char b = s.charAt(tail);
+            if(!isValidChar(c)){
+                tail--;
+            }
+            if(c != b)  return false;
+        }
+         if(head == len && tail == 0)   return true;
+        
+         else return false;
+    }
+    
+    private boolean isValidChar(char c){
+        if (c >= '0' && c <= '9')   return true;
+        else if (c >= 'a' && c <= 'z')   return true;
+        else return false;
+    }
+}
