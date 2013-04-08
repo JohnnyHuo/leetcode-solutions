@@ -2,34 +2,40 @@ public class Solution {
     public boolean isPalindrome(String s) {
         // Start typing your Java solution below
         // DO NOT write main() function
-        int len = s.length();
-        if(len == 0 || s == null)   return true;
+        if(s == null || s.length() == 0)    return true;
+        int length = s.length();
+        s = s.toLowerCase();
         int head = 0;
-        int tail = len - 1;
-        
-        s = s.toLowerCase(); //------missed-------
-        while( head <= len && tail >=0){
-            char c = s.charAt(head);
-            if(!isValidChar(c)){
-                head++;
+        int tail = length - 1;
+        char[] chars = s.toCharArray();
+        while(head < tail){
+            while(!isValidChar(chars[head])){
+                if(head + 1 < length){
+                    head++;
+                }else{
+                    break;
+                }
             }
-        /*}
-        while( tail >= 0){
-            */
-            char b = s.charAt(tail);
-            if(!isValidChar(c)){
-                tail--;
+            
+            while(!isValidChar(chars[tail])){
+                if(tail - 1 >= 0){              //这里把>=写成>了, 有两个case就没过, ".," "a ."
+                    tail--;
+                }else{
+                    break;
+                }
             }
-            if(c != b)  return false;
+            
+            if(head > tail || (head == length - 1 && tail == 0))    return true;
+            if(chars[head] != chars[tail] || !isValidChar(chars[head]))   return false;
+            head++;
+            tail--;
         }
-         if(head == len && tail == 0)   return true;
-        
-         else return false;
+        return true;
     }
     
     private boolean isValidChar(char c){
-        if (c >= '0' && c <= '9')   return true;
-        else if (c >= 'a' && c <= 'z')   return true;
-        else return false;
+        if(c >= '0' && c <= '9')    return true;
+        if(c >= 'a' && c <= 'z')    return true;
+        return false;
     }
 }
