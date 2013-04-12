@@ -25,7 +25,8 @@ public class Solution {
                 }
             }
             
-            if(head > tail || (head == length - 1 && tail == 0))    return true;
+            if(head > tail)     return true;
+            //if(head > tail || (head == length - 1 && tail == 0))    return true;  上面那个条件就足够了
             if(chars[head] != chars[tail] || !isValidChar(chars[head]))   return false;
             head++;
             tail--;
