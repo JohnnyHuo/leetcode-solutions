@@ -18,7 +18,8 @@ public class Solution {
             }
             
             while(!isValidChar(chars[tail])){
-                if(tail - 1 >= 0){              //这里把>=写成>了, 有两个case就没过, ".," "a ."
+                if(tail > 0){
+                //if(tail - 1 >= 0){              //这里把>=写成>了, 有两个case就没过, ".," "a ."
                     tail--;
                 }else{
                     break;
