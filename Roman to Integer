@@ -133,3 +133,64 @@ public class Solution {
         }
     }
 }
+
+//==========================第二天又写了一遍, 结果最后cumulate = num;的位置写错, 然后所有有重复字符的Roman都是错误的========
+public class Solution {
+    private int cur;
+    private int cumulate;
+    private int result;
+    
+    public int romanToInt(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        cur = 0;
+        cumulate = 0;
+        result = 0;
+        
+        char[] charArray = s.toLowerCase().toCharArray();
+        for(int i = 0; i < s.length(); i++){
+            switch(charArray[i]){
+                case 'i':
+                    helper(1);
+                    break;
+                case 'v':
+                    helper(5);
+                    break;
+                case 'x':
+                    helper(10);
+                    break;
+                case 'l':
+                    helper(50);
+                    break;
+                case 'c':
+                    helper(100);
+                    break;
+                case 'd':
+                    helper(500);
+                    break;
+                case 'm':
+                    helper(1000);
+                    break;
+                default:
+                    return 0;
+            }
+        }
+        helper(0);
+        return result;
+    }
+    
+    private void helper(int num){
+        if(cur == num){
+            cumulate += num;
+        }else{
+            cur = num;
+            if(cumulate > num){
+                result += cumulate;
+            }else{
+                result -= cumulate;
+            }
+            cumulate = num;    
+        }
+        //cumulate = num;
+    }
+}
