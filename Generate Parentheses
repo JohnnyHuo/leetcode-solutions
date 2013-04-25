@@ -1,0 +1,49 @@
+// Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+// For example, given n = 3, a solution set is:
+
+// "((()))", "(()())", "(())()", "()(())", "()()()"
+
+//=========下面的是自己写的, 不对, 编译都通不过==================
+
+public class Solution {
+    public ArrayList<String> generateParenthesis(int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        ArrayList<String>   res = new ArrayList<String>();
+        if(n == 0)  return res;
+        int leftNo = n;
+        int rightNo = n;
+        Set set = new HashSet();
+        //StringBuffer buffer = new StringBuffer();
+        while(leftNo <= rightNo && leftNo > 0 && rightNo > 0){
+            StringBuffer buffer = new StringBuffer();
+            
+            if(leftNo == rightNo){
+                buffer.append('(');
+                leftNo--;
+            }else if(leftNo < rightNo){
+                //(buffer.append('(') && leftNo-- )|| (buffer.append(')') && rightNo--) ; ....not a statement
+                //buffer.append('(') || buffer.append(')');                               ....not a statement
+                //buffer.append('(' || ')');                                              ....operator || cannot be applied to char,char
+                buffer.append('(') || buffer.append(')');
+                if(buffer.charAt(buffer.length() - 1) == '('){
+                    leftNo--;
+                }else{
+                    rightNo--;
+                }
+            }else if(leftNo > rightNo){
+                continue;    
+            }
+            
+            if(buffer.length() == 2*n){
+                String tmp = buffer.toString();
+                if(set.add(tmp)){
+                    res.add(tmp);
+                }
+            }
+        }
+        
+        return res;
+    }
+}
