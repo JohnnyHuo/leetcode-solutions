@@ -36,3 +36,44 @@ public class Solution {
         return head;
     }
 }
+
+//+++++++++++++++++++++++++又写了一个, leetcode提交不了+++++++++++++++++++++++++++++++++++
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(n <= 0)    return head;
+        ListNode prev = new ListNode(0), n1 = head, n2 = head;
+        
+        while(n2 != null && n > 0){
+            n2 = n2.next;
+            n--;
+        } 
+        
+        if(n >= 0){
+            return head;
+        }
+        
+        while(n2 != null){
+            n2 = n2.next;
+            n1 = n1.next;
+            prev = prev.next;
+            
+        }
+        
+        prev.next = n1.next;
+        
+        return head;
+    }
+}
