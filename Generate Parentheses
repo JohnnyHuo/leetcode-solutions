@@ -80,3 +80,39 @@ public class Solution {
         }
     }
 }
+
+//自己写了一遍.. 不大对, 已改正
+
+
+public class Solution {
+    public ArrayList<String> generateParenthesis(int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(n == 0)  return new ArrayList<String>();
+        char[] res = new char[2*n];
+        ArrayList<String> result = new ArrayList<String>();
+        /*return*/ generateParenthesisHelper(result, n, 0, 0, res);
+        return result;
+    }
+    
+    private void generateParenthesisHelper(ArrayList<String> result, int n, int left, int right, char[] res){
+        //ArrayList<String> result = new ArrayList<String>();
+        if(left == right && left == n){
+            result.add(new String(res));
+            return;
+        
+        }
+        
+        if(left < n){
+            res[left + right] = '(';
+            generateParenthesisHelper(result, n, left + 1, right, res);   
+        }
+        
+        if(right < left){
+            res[left + right] = ')';
+            generateParenthesisHelper(result, n, left, right + 1, res);   
+        }
+        
+        
+    }
+}
