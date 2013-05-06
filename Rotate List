@@ -112,4 +112,60 @@ input  output	expected
   
 */
 
-//========================不大对呀, 下面是改进的版本, 应该能做出来吧``=====================
+//========================不大对呀, 下面是改进的版本, 应该能做出来吧``=====================还是不对==========
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode rotateRight(ListNode head, int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(n == 0)  return head;
+        if(head == null || head.next == null)    return head;
+        
+        ListNode n1 = head, n2 = head, counter = head;
+        int count = 0;
+        
+        while(counter != null){
+            counter = counter.next;
+            count++;    
+        }
+        
+        int k = n % count;
+        
+        while(n2 != null && k > 0){
+            n2 = n2.next;
+            k--;
+        }
+        
+        //if(n >= 0)  return head;
+        
+        while(n2 != null){
+            n1 = n1.next;
+            n2 = n2.next;
+        }
+        
+        ListNode res = n1;
+        
+        while(n1.next != null){
+            n1 = n1.next;
+        }
+        
+        n1.next = head;
+        
+        return res;
+        
+        
+        
+        
+    }
+}
+//------------还是不对------------------
