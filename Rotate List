@@ -169,3 +169,66 @@ public class Solution {
     }
 }
 //------------还是不对------------------
+
+//************终于过了**********************
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode rotateRight(ListNode head, int n) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(n == 0)  return head;
+        if(head == null || head.next == null)    return head;
+        
+        ListNode counter = head;
+        ListNode n1 = head;
+        ListNode n2 = head;
+        //ListNode tail = head;
+        ListNode prev = new ListNode(0);
+        ListNode res;
+        prev.next = head;
+        ListNode tail = prev;
+        
+        int length = 0;
+        
+        while(counter != null){
+            counter = counter.next;
+            length++;    
+        }
+        
+        n = n % length;
+        
+        if( n == 0) return head;    //这里忘记判断了, 上面第一行就判断了这种情况, 取余之后也还要的..
+        
+        while(n2 != null && n > 0){
+            n2 = n2.next;
+            tail = tail.next;
+            n--;
+        }
+        
+        //if(n >)
+        
+        while(n2 != null){
+            n2 = n2.next;
+            n1 = n1.next;
+            prev = prev.next;
+            tail = tail.next;
+        }
+        
+        tail.next = head;
+        prev.next = null;
+        
+        return n1;
+        
+    }
+}
