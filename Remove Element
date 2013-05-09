@@ -25,3 +25,33 @@ public class Solution {
         return p2 + 1;
     }
 }
+//*******************又写了一遍***********************
+public class Solution {
+    public int removeElement(int[] A, int elem) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        
+        int len = A.length;
+        
+        //if(len == 0 || A == null)   return 0;
+        
+        int i = 0, j = len - 1;
+        
+        
+        while(i <= j){                  //***********这里注意是 <= , 写成了 < , 很多case都过不了****************
+            if(A[i] == elem){
+                if(A[j] != elem){
+                    A[i] = A[j];
+                    i++;
+                    j--;
+                }else{
+                    j--;
+                }
+            }else{
+                i++;
+            }
+        }
+        
+        return j + 1;
+    }
+}
