@@ -13,26 +13,23 @@ public class Solution {
     public ListNode deleteDuplicates(ListNode head) {
         // Start typing your Java solution below
         // DO NOT write main() function
-        ListNode fakeHead = new ListNode(0);
+        ListNode fakeHead = new ListNode(0);    
+        ListNode cur = head, prev = fakeHead;
         fakeHead.next = head;
-        ListNode prev = fakeHead;
-        ListNode n1 = head;
-        ListNode n2 = head.next;
         
-        while(n2 != null){
+        while(cur != null){
             boolean isDup = false;
-            while(n1.val == n2.val){
+            while(cur.next != null && cur.val == cur.next.val){
                 isDup = true;
+                cur = cur.next;
             }
             
             if(isDup){
-                n1 = n2.next;
-                n2 = n1.next;
-                prev.next = n1;
+                cur = cur.next;
+                prev.next = cur;
             }else{
-                n1 = n1.next;
-                n2 = n2.next;
                 prev = prev.next;
+                cur = cur.next;
             }
         }
         
