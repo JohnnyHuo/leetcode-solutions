@@ -41,3 +41,58 @@ public class Solution {
         return false;
     }
 }
+//又写的, 更简洁, 但是刚开始写的时候少考虑条件了
+
+public class Solution {
+    public boolean isPalindrome(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(s == null || s.length() == 0 || s.length() == 1){
+            return true;
+        }
+        
+        s = s.toLowerCase();
+        
+        char[] arr = s.toCharArray();
+        
+        int i = 0;
+        int j = arr.length - 1;
+        
+        while(i < j){
+            while(! isValidChar(arr[i])){
+                if(i == arr.length - 1){
+                    break;
+                }else{
+                    i++;
+                }
+            }
+            while(! isValidChar(arr[j])){
+                if(j == 0){
+                    break;
+                }else{
+                    j--;
+                }
+            }
+            
+            if(i > j)   return true;
+            if(arr[i] != arr[j] /*|| !isValidChar(arr[i])*/){    //去掉这个条件也完全对唉! 
+                return false;   
+            }
+            
+            j--;
+            i++;      
+        }
+        
+        return true;
+    }
+    
+    private boolean isValidChar(char c){
+        if(c >= '0' && c <= '9')    
+            return true;
+            
+        if(c >= 'a' && c <= 'z')
+            return true;
+            
+        return false;
+    }
+}
