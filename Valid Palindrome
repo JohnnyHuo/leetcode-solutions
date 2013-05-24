@@ -41,7 +41,7 @@ public class Solution {
         return false;
     }
 }
-//又写的, 更简洁, 但是刚开始写的时候少考虑条件了
+//********又写的, 更简洁, 但是刚开始写的时候少考虑条件了*******************
 
 public class Solution {
     public boolean isPalindrome(String s) {
@@ -81,6 +81,66 @@ public class Solution {
             
             j--;
             i++;      
+        }
+        
+        return true;
+    }
+    
+    private boolean isValidChar(char c){
+        if(c >= '0' && c <= '9')    
+            return true;
+            
+        if(c >= 'a' && c <= 'z')
+            return true;
+            
+        return false;
+    }
+}
+
+//**************究极版************把i,j的判定条件写到while语句中, 保证i, j的值在正确范围之内
+
+public class Solution {
+    public boolean isPalindrome(String s) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(s == null || s.length() == 0 || s.length() == 1){
+            return true;
+        }
+        
+        s = s.toLowerCase();
+        
+        char[] arr = s.toCharArray();
+        
+        int i = 0;
+        int j = arr.length - 1;
+        
+        while(i < j){
+            while(! isValidChar(arr[i]) && i < arr.length - 1){
+                //if(i == arr.length - 1){
+                  //  break;
+                //}else{
+                    i++;
+                //}
+            }
+            while(! isValidChar(arr[j]) && j > 0){
+                //if(j == 0){
+                  //  break;
+                //}else{
+                    j--;
+                //}
+            }
+            
+            if(i > j)   return true;                            //........这里很关键, 很容易漏, 去掉的话[. ,] 这种就判定为false了, 其实是true
+            if(arr[i] != arr[j] /*|| !isValidChar(arr[i])*/){
+                return false;
+                
+            }
+            
+            j--;
+            i++;
+            
+            
+          
         }
         
         return true;
