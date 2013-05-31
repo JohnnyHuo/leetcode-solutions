@@ -48,3 +48,33 @@ public class Solution {
         return Math.max(root.val + leftMax, root.val + rightMax);
     }
 }
+
+//用int[] 也是可以哒, 而且更简洁一些
+
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int maxPathSum(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int[] res = new int[1];
+        res[0] = Integer.MIN_VALUE;
+        maxPathSum(root, res);
+        return res[0];
+    }
+    
+    public static int maxPathSum(TreeNode root, int[]res){
+        if(root == null)    return 0;
+        int leftMax = Math.max(0, maxPathSum(root.left, res));
+        int rightMax = Math.max(0, maxPathSum(root.right, res));
+        res[0] = Math.max(res[0], root.val + rightMax + leftMax);
+        return Math.max(root.val + rightMax, root.val + leftMax);
+    }
+}
