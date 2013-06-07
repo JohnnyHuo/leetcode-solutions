@@ -33,7 +33,7 @@ public class Solution{
         while(i < str.length()){
             c = str.charAt(i); //*****************************MISSED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if(Character.isDigit(c)){
-                int x = Character.digit(c, 10);
+                int x = Character.digit(c, 10);  //Character.digit() 这个方法好久没用忘了啊。。。
                 if((Integer.MAX_VALUE - x)/10>=n){
                     n = 10*n + x;
                 }else{
