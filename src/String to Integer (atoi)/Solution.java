@@ -2,7 +2,7 @@ public class Solution{
     public int atoi(String str){
         if(str.length() == 0)   return 0;
         boolean isNeg = false;
-        boolean overflow = false;
+        boolean overflow = false;           // keep it in mind
         int i = 0;
         char c = 'a';
         while(i < str.length()){
