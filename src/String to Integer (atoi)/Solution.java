@@ -60,3 +60,60 @@ public class Solution{
         
     }
 }
+
+//重写了一遍。。错误百出
+
+public class Solution {
+    public int atoi(String str) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        if(str == null || str.length() == 0) return 0;
+        str = str.trim();                                   //试了一下trim， 省去了下面isWhitespace()的判断
+        int i = 0;
+        while(i < str.length()){
+            //if(Character.isWhitespace(str.charAt(i)))   i++;
+            
+            if(Character.isDigit(str.charAt(i)) || str.charAt(i) == '-' || str.charAt(i) == '+')    
+                break;
+            else 
+                return 0;  //missed......所以卡“abc”了
+        }
+        
+        boolean isNeg = false;
+        if(str.charAt(i) == '-')
+            isNeg = true;
+        
+        if(str.charAt(i) == '-' || str.charAt(i) == '+')
+            i++;
+        boolean overflow = false;
+        int sum = 0;
+        while(i < str.length()){
+            if(Character.isDigit(str.charAt(i))){
+                int x = Character.digit(str.charAt(i), 10);
+                //if(sum * 10 + x <= Integer.MAX_VALUE){
+                if((Integer.MAX_VALUE - x) / 10 >= sum){
+                    sum = sum * 10 + x;
+                }else{
+                    overflow = true;
+                    //break；
+                }
+                i++; //missed....
+            }else{
+                break;
+            }
+        }
+        
+        if(overflow){
+            if(isNeg){
+                return Integer.MIN_VALUE;
+            }
+            else{
+                return Integer.MAX_VALUE;
+            }
+        }else{
+            if(isNeg)   return  -sum;
+                else    return sum;
+        }
+        
+    }
+}
